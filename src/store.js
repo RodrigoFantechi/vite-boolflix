@@ -1,14 +1,32 @@
-import {reactive} from 'vue'
+import { reactive } from 'vue'
 import axios from 'axios'
 
 export const store = reactive({
-    error: null,
-    callApi(url) {
-        axios.get(url).then(resp => {
-          console.log(resp);
-        }).catch(err => {
-          console.error(err.message);
-          store.error = err.message
-        })
+  error: null,
+  films : null,
+  // title: '',
+  // originalTitle: '',
+  // lenguage: '',
+  // rate: '',
+
+  callApi(name) {
+    const config = {
+      method: 'get',
+      url: 'https://api.themoviedb.org/3/search/movie',
+      params: {
+        api_key: 'ab909735a57a0d14313842405a2fd07c',
+        query: name,
       }
+    };
+
+    axios(config)
+      .then(function (response) {
+        store.films = response.data.results
+        console.log(store.films);
+
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
 })

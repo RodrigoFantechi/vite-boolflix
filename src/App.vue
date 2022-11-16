@@ -17,7 +17,7 @@ export default{
   },
 
   mounted() {
-    // this.store.callApi()
+    this.store.callApi('Ritorno al futuro')
     
   },
 }
