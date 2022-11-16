@@ -16,22 +16,22 @@ export const store = reactive({
       params: {
         api_key: 'ab909735a57a0d14313842405a2fd07c',
         query: name,
-        page: 1,
       }
     };
 
-    axios(config)
-      .then(function (response) {
-        console.log(response);
-        store.media = response.data.results
-        console.log(store.media);
+    const configTwo = {
+      method: 'get',
+      url: 'https://api.themoviedb.org/3/search/tv',
+      params: {
+        api_key: 'ab909735a57a0d14313842405a2fd07c',
+        query: name,
+      }
+    };
 
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+    this.callAxios(config)
+    this.callAxios(configTwo)
 
-     
+
   },
   checkInput() {
 
@@ -52,6 +52,23 @@ export const store = reactive({
     } else {
       return 'https://countryflagsapi.com/png/' + lang
     }
+  },
+  callAxios(config) {
+    axios(config)
+      .then(function (response) {
+        if (store.media === null) {
+          store.media = response.data.results
+        } else {
+          response.data.results.forEach(element => {
+            store.media.push(element)
+          });
+        }
+        console.log(store.media);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   }
+
 })
 
