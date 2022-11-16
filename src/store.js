@@ -8,29 +8,10 @@ export const store = reactive({
   media: null,
   searchTitle: '',
 
-
   callApi(name) {
     this.media =null;
-    const config = {
-      method: 'get',
-      url: 'https://api.themoviedb.org/3/search/movie',
-      params: {
-        api_key: 'ab909735a57a0d14313842405a2fd07c',
-        query: name,
-      }
-    };
-
-    const configTwo = {
-      method: 'get',
-      url: 'https://api.themoviedb.org/3/search/tv',
-      params: {
-        api_key: 'ab909735a57a0d14313842405a2fd07c',
-        query: name,
-      }
-    };
-
-    this.callAxios(config)
-    this.callAxios(configTwo)
+    this.callAxios('https://api.themoviedb.org/3/search/movie?api_key=ab909735a57a0d14313842405a2fd07c&query='+name)
+    this.callAxios('https://api.themoviedb.org/3/search/tv?api_key=ab909735a57a0d14313842405a2fd07c&query='+name)
     this.unloackButton = false,
     this.check = false
   },
@@ -60,8 +41,8 @@ export const store = reactive({
       return 'https://countryflagsapi.com/png/' + lang
     }
   },
-  callAxios(config) {
-    axios(config)
+  callAxios(call) {
+    axios.get(call)
       .then(function (response) {
         if (store.media === null) {
           store.media = response.data.results
