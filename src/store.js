@@ -2,6 +2,7 @@ import { reactive } from 'vue'
 import axios from 'axios'
 
 export const store = reactive({
+  unloackButton: true,
   check: true,
   error: null,
   media: null,
@@ -9,7 +10,7 @@ export const store = reactive({
 
 
   callApi(name) {
-
+    this.media =null;
     const config = {
       method: 'get',
       url: 'https://api.themoviedb.org/3/search/movie',
@@ -30,10 +31,13 @@ export const store = reactive({
 
     this.callAxios(config)
     this.callAxios(configTwo)
-
-
+    this.unloackButton = false,
+    this.check = false
   },
   checkInput() {
+    if( this.unloackButton === false){
+      this.check = true
+    }
 
     let appoggio = ''
     for (let i = 0; i < this.searchTitle.length; i++) {
@@ -49,7 +53,10 @@ export const store = reactive({
   findFlags(lang) {
     if (lang === 'en') {
       return 'https://countryflagsapi.com/png/gb'
-    } else {
+    } else if(lang === 'ja'){
+      return 'https://countryflagsapi.com/png/JP'
+    }
+    else {
       return 'https://countryflagsapi.com/png/' + lang
     }
   },
