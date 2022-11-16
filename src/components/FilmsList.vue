@@ -11,13 +11,15 @@ export default {
 }
 </script>
 <template >
-        <div class="col" v-for="film in store.films">
+        <div class="col" v-for="film in store.media">
             <p>{{film.title}}</p>
             <p>{{film.original_title}}</p>
-            <p>{{film.original_language}}</p>
+            <img :src="store.findFlags(film.original_language)" alt="flag not available">
             <p>{{film.vote_average}}</p>
         </div>
 </template>
 <style lang="scss" scoped>
-    
+    img{
+        width: 35px;
+    }
 </style>

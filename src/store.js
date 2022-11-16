@@ -4,12 +4,9 @@ import axios from 'axios'
 export const store = reactive({
   check: true,
   error: null,
-  films: null,
+  media: null,
   searchTitle: '',
-  // title: '',
-  // originalTitle: '',
-  // lenguage: '',
-  // rate: '',
+
 
   callApi(name) {
 
@@ -19,23 +16,26 @@ export const store = reactive({
       params: {
         api_key: 'ab909735a57a0d14313842405a2fd07c',
         query: name,
+        page: 1,
       }
     };
 
     axios(config)
       .then(function (response) {
-        store.films = response.data.results
-        console.log(store.films);
+        console.log(response);
+        store.media = response.data.results
+        console.log(store.media);
 
       })
       .catch(function (error) {
         console.log(error);
       });
 
+     
   },
   checkInput() {
 
-    let appoggio=''
+    let appoggio = ''
     for (let i = 0; i < this.searchTitle.length; i++) {
       appoggio += ' ';
 
@@ -45,5 +45,13 @@ export const store = reactive({
         this.check = true
       }
     }
+  },
+  findFlags(lang) {
+    if (lang === 'en') {
+      return 'https://countryflagsapi.com/png/gb'
+    } else {
+      return 'https://countryflagsapi.com/png/' + lang
+    }
   }
 })
+
