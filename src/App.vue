@@ -16,10 +16,10 @@ export default{
     }
   },
 
-  mounted() {
-    this.store.callApi('Ritorno al futuro')
+  // mounted() {
+  //   this.store.callApi('Ritorno al futuro')
     
-  },
+  // },
 }
 </script>
 
