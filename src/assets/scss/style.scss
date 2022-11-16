@@ -1,0 +1,14 @@
+@use '/node_modules/bootstrap/scss/bootstrap.scss';
+@use './header.scss';
+@use './main.scss';
+@use './footer.scss';
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background-color: red;
+}
