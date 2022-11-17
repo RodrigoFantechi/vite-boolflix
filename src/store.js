@@ -56,7 +56,8 @@ export const store = reactive({
       .catch(function (error) {
         console.log(error);
       });
-  }
+  },
+
 
 })
 

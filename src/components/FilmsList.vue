@@ -21,7 +21,11 @@ export default {
             <div class="flag">
                 <img :src="store.findFlags(film.original_language)" alt="flag not available">
             </div>
-            <p>rate: {{ film.vote_average }}/10</p>
+            <p class="stars">
+                <font-awesome-icon icon="fa-solid fa-star" v-for="(singlestar,index) in 5" :class="Math.floor(film.vote_average/2)>index ?'gold':'gray'" />
+            </p>
+            
+
         </div>
     </div>
 </template>
@@ -33,8 +37,9 @@ export default {
         background-color: lightsalmon;
 
         .image {
-            
+
             width: 210px;
+
             img {
                 max-width: 100%;
                 object-fit: cover;
@@ -44,6 +49,16 @@ export default {
         .flag {
             img {
                 width: 35px;
+            }
+        }
+
+        .stars {
+            .gray {
+                color: #ededed;
+            }
+
+            .gold {
+                color: yellow;
             }
         }
     }
