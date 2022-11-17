@@ -40,10 +40,11 @@ export default {
 </template>
 <style lang="scss" scoped>
 header {
+    margin: 6rem 0;
     background-image: url(../assets/img/background_image.jpg);
     background-repeat: no-repeat;
     background-size: cover;
-    height: 650px;
+    height: calc(100vh - 12rem);
     color: white;
 
     .layover {

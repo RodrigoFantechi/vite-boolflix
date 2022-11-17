@@ -2,6 +2,7 @@ import { reactive } from 'vue'
 import axios from 'axios'
 
 export const store = reactive({
+  
   unloackButton: true,
   check: true,
   error: null,
@@ -9,6 +10,7 @@ export const store = reactive({
   searchTitle: '',
 
   callApi(name) {
+    
     this.media =null;
     this.callAxios('https://api.themoviedb.org/3/search/movie?api_key=ab909735a57a0d14313842405a2fd07c&query='+name)
     this.callAxios('https://api.themoviedb.org/3/search/tv?api_key=ab909735a57a0d14313842405a2fd07c&query='+name)
