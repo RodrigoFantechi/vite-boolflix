@@ -19,7 +19,7 @@ export default {
             <div class=" details p-3">
                 <div class="info">
                     <h5>Title: {{ film.title || film.name }}</h5>
-                    <h6>Original Title: {{ film.original_title || film.original_name }}</h6>
+                    <h6 v-if="(film.title || film.name) !== (film.original_title || film.original_name)">Original Title: {{ film.original_title || film.original_name }}</h6>
                 </div>
                 <div class="flag d-flex">
                     <span>language:</span>
